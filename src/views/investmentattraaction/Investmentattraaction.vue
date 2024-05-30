@@ -3,9 +3,6 @@ import { onMounted, onUnmounted, } from 'vue'
 import AMapLoader from '@amap/amap-jsapi-loader'
 
 let map = null
-let object3Dlayer = null
-let prism = null
-let _nowStatus=false;
 onMounted(() => {
   AMapLoader.load({
     key: "5641e5d33d9db1bd3f622a595406b3b5",//申请好的Web端开发者Key，首次调用时load必填
@@ -37,7 +34,6 @@ onMounted(() => {
           layers:[buildings],//地图图层数组
           showBuildingBlock:false,//是否显示楼快
           showIndoorMap:true,//是否自动展示室内地图
-
         })
         // 监听地图indoor_create事件,室内地图图层创建回调中可获取室内地图图层实例
         map.on("indoor_create",function(){
@@ -50,7 +46,7 @@ onMounted(() => {
           var controlBar = new AMap.ControlBar({ //控制地图旋转插件
             position: {
               right: '10px',
-              top: '10px'
+              top: '10px',
             }
           });
           map.addControl(controlBar);

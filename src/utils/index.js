@@ -8,20 +8,23 @@ export default function children() {
     {
       title: "基础数据",
       path: "/basicdata",
-      icon: "HelpFilled",
+      icon: "Checked",
       children: [
         {
           title: "表格封装",
           path: "/basicdata/processcenter",
+          icon: "Tickets",
           children:[
               {
                 title:"表格封装组件",
                 path: "/basicdata/processcenter/table",
+                icon: "Memo",
                 name:"table"
               },
             {
               title:"表格排序组件",
               path: "/basicdata/processcenter/sortable",
+              icon: "Collection",
               name:"sortable"
             }
           ]
@@ -29,15 +32,19 @@ export default function children() {
         {
           title: "地图信息",
           path: "/basicdata/maps",
+          icon: "Location",
           children: [
             {
               title:"2D地图",
               path: "/basicdata/maps/map",
+              icon: "LocationInformation",
               name:"pr"
+              
             },
             {
               title:"3D地图",
               path: "/basicdata/maps/3Dmap",
+              icon: "MapLocation",
               name:"pr"
             },
           ]
@@ -147,14 +154,6 @@ export default function children() {
       path: "/fangzhen",
       icon: "Menu",
       children: [
-        // {
-        //   title: "全网仿真",
-        //   path: "/fangzhen/quanwang",
-        // },
-        // {
-        //   title: "分网仿真",
-        //   path: "/fenwangfangzhen",
-        //   list: [
         {
           title: "市趟网",
           path: "/fangzhen/fenwangfangzhen/shanghang",
@@ -167,8 +166,6 @@ export default function children() {
           title: "省际/省内运输",
           path: "/fangzhen/fenwangfangzhen/shengjiyunshu",
         },
-        // ],
-        // },
       ],
     },
     {
@@ -180,10 +177,6 @@ export default function children() {
           title: "账号管理",
           path: "/account/manageement",
         },
-        // {
-        //   title: "权限设置",
-        //   path: "/account/settings",
-        // },
       ],
     },
   ];

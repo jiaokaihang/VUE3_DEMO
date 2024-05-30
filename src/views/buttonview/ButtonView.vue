@@ -10,6 +10,7 @@ import {
 </script>
 
 <template>
+<div>
   <el-row class="mb-4">
     <el-button>Default</el-button>
     <el-button type="primary">Primary</el-button>
@@ -45,6 +46,7 @@ import {
     <el-button type="warning" :icon="Star" circle />
     <el-button type="danger" :icon="Delete" circle />
   </el-row>
+</div>
 </template>
 
 <style scoped>

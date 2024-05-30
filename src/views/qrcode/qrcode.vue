@@ -36,7 +36,8 @@ const handleGetQRCode2 = async() => {
 </script>
 
 <template>
-   <el-button type="primary"  @click="handelGetQRCode">
+<div>
+  <el-button type="primary"  @click="handelGetQRCode">
        vue3获取qrcode生成的二维码-简单版
    </el-button>
   <div class="qrcode">
@@ -50,6 +51,7 @@ const handleGetQRCode2 = async() => {
     <img :src="qrcode2" />
   </div>
 
+</div>
 </template>
 
 <style>
