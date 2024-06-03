@@ -21,6 +21,12 @@ const form = ref({
 })
 
 function handelClick() {
+    const loading = ElLoading.service({
+    lock: true,
+    text: 'Loading,正在努力翻译！',
+    background: 'rgba(0, 0, 0, 0.7)',
+  })
+
   const data = {
 	// 需要被翻译的文本
     text: form.value.Chinese,
@@ -41,7 +47,9 @@ tolang: "EN",
   
     data
    }).then(res=>{
+    
     form.value.English = res.dst
+    loading.close()
     console.log(res.dst)
    })
 }
