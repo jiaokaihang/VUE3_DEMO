@@ -192,6 +192,11 @@ const constRoutes = [
         component: ()=>import('@/views/qrcode/qrcode.vue'),
         meta: { title:'二维码组件'},
       },
+      {
+        path: "/basicdata/kongtiao",
+        component: ()=>import('@/views/kongtiao/index.vue'),
+        meta: { title:'便携小空调组件'},
+      },
     ]
   },
 

@@ -116,8 +116,11 @@ export default function children() {
         {
           title:'翻译示例',
           path:"/basicdata/fanyi"
+        },
+        {
+          title:'便携小空调示例',
+          path:"/basicdata/kongtiao"
         }
-
       ],
     },
     {
