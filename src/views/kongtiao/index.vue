@@ -66,14 +66,14 @@ function btnSClick(){
     flag.value = !flag.value;
 
 }
-// 控制温度加
+// 控制温度减
 function arrowSub(){
     temperature.value -=  0.5
     if(temperature.value<16){
         temperature.value = 16
     }
 }
-// 控制温度减
+// 控制温度加
 function arrowAdd(){
     temperature.value +=  0.5
     if(temperature.value>26){

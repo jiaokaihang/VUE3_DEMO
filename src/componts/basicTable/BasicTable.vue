@@ -204,7 +204,7 @@ function handleEditor(index, row) {
             <div class="paging">
                 <div class="totalStyle">共{{ totalRows }}项数据</div>
                 <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange"
-                    :current-page.sync="newCurrpage" :page-sizes="[5, 10, 15, 20]" :page-size="newPageSize"
+                    v-model:current-page="newCurrpage" :page-sizes="[5, 10, 15, 20]" :page-size="newPageSize"
                     layout="sizes, prev, pager, next, jumper" :total="props.totalRows">
                 </el-pagination>
             </div>

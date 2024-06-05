@@ -20,13 +20,16 @@
                 </el-table-column>
 
     </el-table>
-
+    <UpdateAccount :dialog="dialog" :data="data" @handleClose='handleClose'/>
    </div>
+   
 </template>
 
 <script setup>
 import { ref, onMounted, computed,inject } from 'vue'
+import UpdateAccount from './updateAccount/UpdateAccount.vue'
 import children from "@/utils/index";
+
 const colunm = ref([
 
     { prop: "title", label: "标题" },
@@ -37,6 +40,8 @@ const colunm = ref([
 ])
 const tableData = ref([])
 const subchildren = ref([])
+const dialog = ref(false)
+const data = ref({})
 onMounted(() => {
   subchildren.value = children()
   tableData.value = children()
@@ -45,7 +50,16 @@ onMounted(() => {
 })
 function handleEdit(index, row) {
   console.log(index, row);
+  dialog.value = true
+  data.value = row
 }
+
+// 关闭弹窗事件
+function handleClose() {
+  dialog.value = false
+}
+
+// 删除行事件
 
 function handleDelete(index, row) {
   console.log(index, row);
