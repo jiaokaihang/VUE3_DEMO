@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import {RouterView} from 'vue-router'
+import {getToken} from '@/utils/token'
 import Content from '@/componts/content/Content.vue'
 import Home from "../views/home/Home.vue";
 import Processcenter from "../views/processcenter/Processcenter";
@@ -37,19 +38,20 @@ import Client from '../views/client/index.vue'
 const constRoutes = [
   {
     path: "/",
-    redirect: "/content/home",
+    redirect: "login",
   },
   {
     path: "/login",
     name:"login",
     component: Login,
+    meta:{needLogin:false}
 
   },
   {
     path: "/content/home",
     name:"Home",
     component: Home,
-    meta:{title:'首页'}
+    meta:{title:'首页',needLogin:true}
   },
   {
     path: '/404',
@@ -60,26 +62,26 @@ const constRoutes = [
   {
     path:'/basicdata',
     component: RouterView,
-    meta:{title:'基础数据',roles:['sys:manger']},
+    meta:{title:'基础数据',roles:['sys:manger'],needLogin:false},
     children: [
       {
         path: "/basicdata/processcenter",
         name:"processcenter",
         component: RouterView,
-        meta: { title:'表格封装'},
+        meta: { title:'表格封装',needLogin:true},
         children:[
           {
             path: "/basicdata/processcenter/table",
             name:"table",
             // component:()=> import('@/views/processcenter/Processcenter.vue'),
             component:Processcenter,
-            meta:{title:'表格封装组件'}
+            meta:{title:'表格封装组件',needLogin:true}
           },
           {
             path: "/basicdata/processcenter/sortable",
             name:"sortable",
             component:sortType,
-            meta:{title:'表格排序组件'}
+            meta:{title:'表格排序组件',needLogin:true}
           }
         ]
       },
@@ -87,19 +89,19 @@ const constRoutes = [
         path: "/basicdata/maps",
         name:"investmentattraction",
         component: RouterView,
-        meta: { title:'3D地图'},
+        meta: { title:'3D地图',needLogin:true},
         children:[
           {
             path: "/basicdata/maps/map",
             name:"map",
             component:Map,
-            meta:{title:'2D地图'}
+            meta:{title:'2D地图',needLogin:true}
           },
           {
             path: "/basicdata/maps/3Dmap",
             name:"3Dmap",
             component:threeMap,
-            meta:{title:'3D地图'}
+            meta:{title:'3D地图',needLogin:true}
           },
           // {
           //   path: "/basicdata/maps/mapThree",
@@ -112,90 +114,90 @@ const constRoutes = [
       {
         path: "/basicdata/productpara",
         component: Productpara,
-        meta: { title:'表单组件'},
+        meta: { title:'表单组件',needLogin:true},
 
       },
       {
         path: "/basicdata/upload",
         component: RouterView,
-        meta: { title:'上传组件'},
+        meta: { title:'上传组件',needLogin:true},
         children:[
           {
             path: "/basicdata/upload/uploadImage",
             component: UploadImage,
-            meta: { title:'上传组件'},
+            meta: { title:'上传组件',needLogin:true},
           },
           {
             path: "/basicdata/upload/uploadFile",
             component: ()=>import('../views/uploadFile/UploadFile.vue'),
-            meta: { title:'文件分片上传'},
+            meta: { title:'文件分片上传',needLogin:true},
           }
         ]
       },
       {
         path: "/basicdata/watermark",
         component: Watermark,
-        meta: { title:'水印组件'},
+        meta: { title:'水印组件',needLogin:true},
       },
       {
         path: "/basicdata/calendar",
         component: Calendar,
-        meta: { title:'日历组件'},
+        meta: { title:'日历组件',needLogin:true},
       },
       {
         path: "/basicdata/buttonview",
         component: ButtonView,
-        meta: { title:'按钮组件'},
+        meta: { title:'按钮组件',needLogin:true},
       },
       {
         path: "/basicdata/setups",
         component: SetUp,
-        meta: { title:'步骤条组件'},
+        meta: { title:'步骤条组件',needLogin:true},
       },
       {
         path: "/basicdata/client",
         component: Client,
-        meta: { title:'上传身份证组件'},
+        meta: { title:'上传身份证组件',needLogin:true},
       },
       {
         path: "/basicdata/piniaShili",
         component: PiniaDemo,
-        meta: { title:'pinia组件'},
+        meta: { title:'pinia组件',needLogin:true},
       },
       {
         path: "/basicdata/radioDemo",
         component: RadioDemo,
-        meta: { title:'单选按钮组件'},
+        meta: { title:'单选按钮组件',needLogin:true},
       },
       {
         path: "/basicdata/danmu",
         component: ()=>import('@/views/danmaku/index.vue'),
-        meta: { title:'弹幕组件'},
+        meta: { title:'弹幕组件',needLogin:true},
       },
       {
         path: "/basicdata/Tabs",
         component: ()=>import('@/views/tabs/Tab.vue'),
-        meta: { title:'Tabs组件'},
+        meta: { title:'Tabs组件',needLogin:true},
       },
       {
         path: "/basicdata/inputCopy",
         component: ()=>import('@/views/inputCopy/InputCopy.vue'),
-        meta: { title:'文本复制组件'},
+        meta: { title:'文本复制组件',needLogin:true},
       },
       {
         path: "/basicdata/fanyi",
         component: ()=>import('@/views/fanyi/index.vue'),
-        meta: { title:'翻译组件'},
+        meta: { title:'翻译组件',needLogin:true},
       },
       {
         path: "/basicdata/qrcode",
         component: ()=>import('@/views/qrcode/qrcode.vue'),
-        meta: { title:'二维码组件'},
+        meta: { title:'二维码组件',needLogin:true},
       },
       {
         path: "/basicdata/kongtiao",
         component: ()=>import('@/views/kongtiao/index.vue'),
-        meta: { title:'便携小空调组件'},
+        meta: { title:'便携小空调组件',needLogin:true},
       },
     ]
   },
@@ -204,45 +206,45 @@ const constRoutes = [
   {
     path: "/netWork",
     component: Content,
-    meta:{title:'系统管理',roles:['sys:manger']},
+    meta:{title:'系统管理',roles:['sys:manger'],needLogin:true},
     children:[
       {
         path:'/network/user',
         component:User,
-        meta: { title:'用户管理'},
+        meta: { title:'用户管理',needLogin:true},
       },
       {
         path:'/network/juese',
         component:Juese,
-        meta: { title:'角色管理'},
+        meta: { title:'角色管理',needLogin:true},
       },
       {
         path:'/network/menu',
         component:Menu,
-        meta: { title:'菜单管理'},
+        meta: { title:'菜单管理',needLogin:true},
       },
       {
         path:'/network/bumen',
         component:Bumen,
-        meta: { title:'部门管理'},
+        meta: { title:'部门管理',needLogin:true},
       },
       {
         path:'/network/gangwei',
         component:Gangwei,
-        meta: { title:'岗位管理'},
+        meta: { title:'岗位管理',needLogin:true},
       }
     ]
   },
   {
     path: "/account",
     component: Content,
-    meta:{title:'账号管理',roles:['sys:manger']},
+    meta:{title:'账号管理',roles:['sys:manger'],needLogin:true},
     children: [
       {
 
         path: "/account/manageement",
         component: ()=>import('@/views/account/Account.vue'),
-        meta: { title:'账号管理'},
+        meta: { title:'账号管理',needLogin:true},
       },
       // {
       //   title: "权限设置",
@@ -263,6 +265,25 @@ const router = createRouter({
   history: routerHistory,
   routes: constRoutes,
 });
+
+//全局守卫，登录拦截，本地没有存token，则跳转到登录页
+ router.beforeEach((to, from, next) => {
+    const token =getToken()
+    if (to.meta.needLogin) {
+        if(token){
+          next()
+        }else {
+          if(to.path=='/login'){
+            next()
+          }else {
+            next({path:'/login'})
+          }
+        }
+    }else {
+      next()
+    }
+
+ })
 
 export default router;
 

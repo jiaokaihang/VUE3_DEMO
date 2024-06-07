@@ -41,8 +41,8 @@ export const useUser = defineStore("user", {
       }, 1000);
     },
     loginUser(data){
-
-    if(data.username === 'admin' && data.password === 'admin'){
+      console.log(data)
+    if(data.username === 'admin' && data.password === '123456'){
 
       return Promise.resolve(true)
        // this.token= result.data.token

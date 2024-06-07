@@ -1,101 +1,110 @@
-<!--<template>-->
-<!--    <div class="login" style="display: flex;align-items: center;justify-content: center">-->
-<!--      <div style="position: absolute;z-index:999; opacity: .9;background-color: lightseagreen">-->
-<!--      <el-form :model="form" label-width="120px">-->
-<!--        <el-form-item label="用户名">-->
-<!--          <el-input v-model="form.username" />-->
-<!--        </el-form-item>-->
-<!--        <el-form-item label="密码">-->
-<!--          <el-input v-model="form.password" type="password" />-->
-<!--        </el-form-item>-->
-<!--        <el-button type="success" style="margin-left: 120px;margin-top: 20px" @click="handelLogin" :loading="loading">登录</el-button>-->
-<!--      </el-form>-->
-
-<!--      </div>-->
-<!--      <Particles id="tsparticles" class="login_particles" :options="a" >-->
-
-<!--      </Particles>-->
-
-<!--    </div>-->
-<!--</template>-->
-
-
-<!--<script setup>-->
-<!--import  {a} from '../../componts/particles/particles'-->
-<!--import { reactive, ref } from 'vue'-->
-<!--import {useRouter} from 'vue-router'-->
-<!--import { useUser } from '@/store/user/user.js'-->
-<!--import {ElNotification} from "element-plus";-->
-
-<!--console.log('useLoginUser',useUser)-->
-<!--let useLoginUser = useUser()-->
-<!--const router = useRouter()-->
-<!--const form = reactive({-->
-<!--     username:"admin",-->
-<!--  password:"admin"-->
-<!--})-->
-<!--const loading = ref(false)-->
-<!--async function handelLogin(){-->
-<!--   loading.value = true-->
-<!--  //通知仓库去发送请求-->
-<!--  // 成功之后跳转路由-->
-<!--    try {-->
-<!--    let Res = await    useLoginUser.loginUser(form)-->
-<!--      loading.value=false-->
-<!--      if(Res){-->
-<!--        ElNotification({-->
-<!--          type:"success",-->
-
-<!--          message:"登录成功"-->
-<!--        })-->
-<!--      }-->
-<!--      router.push('/content/home')-->
-<!--    }catch (error)-->
-
-<!--  {-->
-<!--    loading.value=false-->
-<!--      ElNotification({-->
-<!--        type:"error",-->
-<!--        message:error.message-->
-<!--      })-->
-<!--    }-->
-<!--}-->
-
-
-
-<!--</script>-->
-
-<!--<style scoped lang="less">-->
-<!--.login{-->
-<!--  height: 100vh;-->
-<!--  width: 100vw;-->
-<!--  overflow: hidden;-->
-<!--  .login_particles{-->
-<!--    height: 100vh;-->
-<!--    width: 100%;-->
-<!--    background-color: lightseagreen;-->
-<!--  }-->
-<!--}-->
-
-
-
-<!--</style>-->
-
 <template>
-  <div>
-    <div class="three-canvas" ref="threeTarget"></div>
-  </div>
+  <div  class="login-container">
+  
+ <BackgroundParticles/>
+<div class="login-form">
+  <h1>vue3管理平台模板</h1>
+  <div style=" opacity: .9;" class="form">
+     <el-form :model="form" >
+       <el-form-item  >
+         <el-input v-model="form.username" placeholder="请输入账号" class="input_inner"  prefix-icon="User"></el-input>
+       </el-form-item>
+       <el-form-item >
+         <el-input v-model="form.password" type="password" placeholder="请输入密码"  prefix-icon="Key" show-password/>
+       </el-form-item>
+       <el-button type="success" style="margin-left: 120px;margin-top: 20px" @click="handelLogin" :loading="loading">登录</el-button>
+     </el-form>
+
+     </div>
+</div>
+
+ </div>
 </template>
 
 <script setup>
+import BackgroundParticles from './backgroundParticles/BackgroundParticles.vue'
+import { reactive, ref } from 'vue'
+import {useRouter} from 'vue-router'
+import {setToken} from '@/utils/token'
+import { useUser } from '@/store/user/user.js'
+import {ElNotification} from "element-plus";
+const form = ref({
+        username: 'admin',
+        password: '123456',
+      })
 
+ const router = useRouter()
+let useLoginUser = useUser()
+ console.log('useUser',useUser)
+ const loading = ref(false)
+ async function handelLogin(){
+  const data = {
+    username:form.value.username,
+    password:form.value.password
+  }
+  loading.value = true
+  try {
+    let res = await useLoginUser.loginUser(data)
+    setToken('123456789')
+    loading.value=false
+    if(res){
+      ElNotification({
+        type:"success",
+        message:"登录成功"
+      })
+    }
+    router.push('/content/home')
+  } catch (error) {
+    loading.value = false
+    ElNotification({
+        type:"error",
+        message:error.message
+      })
+  }
+ }
 </script>
 
-<style scoped>
-.three-canvas {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  background-color: #d6eaff;
-}
+<style scoped lang="less">
+.login-container {
+    width: 100%;
+    min-height: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #0F2133;
+    position: relative;
+    color: #ffffff;
+    .login-form{
+      h1{
+
+
+        text-align: center;
+        font-size: 30px;
+      }
+      .form{
+        padding: 20px;
+        margin-top: 10px;
+        background-color: rgba(5, 24, 44, 0);
+        border: 1px solid rgb(40, 105, 127);
+      box-shadow: 0 0 10px 2px rgb(40, 105, 127);
+       .input_inner{
+        border: 1px solid #000;
+       }
+      }
+      width: 20%;
+      position: absolute;
+      margin-top: 15%;
+      margin-left: 40%;
+      
+      
+    }
+
+  }
+  :deep .el-input__wrapper{
+    background: #00000000;
+    border: none;
+  }
+  :deep .el-input__inner{
+     color: #fff;
+  }
+
 </style>
