@@ -1,6 +1,6 @@
 <script setup>
-import {onMounted,onUnmounted,reactive,ref} from 'vue'
-import {danmus as danmusData,getDanmuData} from './danmu'
+import { onMounted, onUnmounted, reactive, ref } from 'vue'
+import { danmus as danmusData, getDanmuData } from './danmu'
 import VueDanmaku from 'vue3-danmaku'
 
 const danmaku = ref() //获取组件实例
@@ -8,19 +8,19 @@ const danmus = ref(getDanmuData())
 const danmuMsg = ref('')
 let timer = 0
 const config = reactive({
-  channels:5,//轨道数量，为0则弹幕轨道数会撑满容器
-  useSlot:true,//是否开启slot
-  loop:true, //是否开启弹幕循环
-  speeds:200,//弹幕速度，实际为弹幕滚动完一整屏的秒数，值越小速度越快
-  fontSize:20,//文本模式下的字号
-  top:10,//弹幕轨道间的垂直间距
-  right:0,//同一轨道弹幕的水平间距
-  debounce:100,//弹幕刷新频率（多少毫秒插入一条弹幕，建议不小于50）
-  randomChannel:true//随机弹幕轨道
+  channels: 5,//轨道数量，为0则弹幕轨道数会撑满容器
+  useSlot: true,//是否开启slot
+  loop: true, //是否开启弹幕循环
+  speeds: 200,//弹幕速度，实际为弹幕滚动完一整屏的秒数，值越小速度越快
+  fontSize: 20,//文本模式下的字号
+  top: 10,//弹幕轨道间的垂直间距
+  right: 0,//同一轨道弹幕的水平间距
+  debounce: 100,//弹幕刷新频率（多少毫秒插入一条弹幕，建议不小于50）
+  randomChannel: true//随机弹幕轨道
 })
 
-onMounted(()=>{
-  console.log('data',danmus)
+onMounted(() => {
+  console.log('data', danmus)
   window.onresize = () => resizeHandler()
 })
 
@@ -28,7 +28,7 @@ onUnmounted(() => {
   window.onresize = null;
 });
 
-function play(type){
+function play(type) {
   switch (type) {
     case 'play':
       danmaku.value.play()
@@ -53,50 +53,50 @@ function play(type){
   }
 }
 
-function switchSlot(slot){
+function switchSlot(slot) {
   config.useSlot = slot
-  danmus.value = slot?getDanmuData():danmusData
+  danmus.value = slot ? getDanmuData() : danmusData
 
-  setTimeout(()=>{
+  setTimeout(() => {
     danmaku.value.stop()
     danmaku.value.play()
   })
 }
 
-function speedsChange(val){
-  if(config.speeds <= 10 && val===-10){
+function speedsChange(val) {
+  if (config.speeds <= 10 && val === -10) {
     return
   }
   config.speeds += val
   danmaku.value.reset()
 }
 
-function fontChange(val){
+function fontChange(val) {
   config.fontSize += val
   danmaku.value.reset()
 }
 
-function channelChange(val){
-  if(!config.channels && val === -1){
+function channelChange(val) {
+  if (!config.channels && val === -1) {
     return
   }
   config.channels += val
 }
 
-function resizeHandler(){
-  if(timer) clearTimeout(timer)
-  timer = window.setTimeout(()=>{
+function resizeHandler() {
+  if (timer) clearTimeout(timer)
+  timer = window.setTimeout(() => {
     danmaku.value.resize()
-  },500)
+  }, 500)
 }
 
-function addDanmu(){
-  if(!danmuMsg.value) return ;
-  const _danmuMsg = config.useSlot ?{
+function addDanmu() {
+  if (!danmuMsg.value) return;
+  const _danmuMsg = config.useSlot ? {
     avatar: "https://i.loli.net/2021/01/17/xpwbm3jKytfaNOD.jpg",
     name: "你",
     text: danmuMsg.value
-  }:danmuMsg.value
+  } : danmuMsg.value
 
   danmaku.value.add(_danmuMsg)
   danmuMsg.value = ""
@@ -108,37 +108,28 @@ function addDanmu(){
 <template>
   <el-card shadow="never">
     <template #header>
-        <div class="card-header">
-            <span class="font-medium">
-              弹幕组件采用开源的
-              <el-link
-                  href="https://github.com/hellodigua/vue-danmaku/tree/vue3"
-                  target="_blank"
-                  style="margin: 0 4px 5px; font-size: 16px"
-              >
-                 vue3-danmaku
-              </el-link>
-            </span>
+      <div class="card-header">
+        <span class="font-medium">
+          弹幕组件采用开源的
+          <el-link href="https://github.com/hellodigua/vue-danmaku/tree/vue3" target="_blank"
+            style="margin: 0 4px 5px; font-size: 16px">
+            vue3-danmaku
+          </el-link>
+        </span>
 
-        </div>
+      </div>
     </template>
     <div class="flex gap-5" style="display: flex">
-       <vue-danmaku
-       ref="danmaku"
-       v-model:danmus="danmus"
-       class="demo"
-       isSuspend
-       v-bind="config"
-       >
+      <vue-danmaku ref="danmaku" v-model:danmus="danmus" class="demo" isSuspend v-bind="config">
         <!--弹幕slot-->
-         <template>
-           <div class="danmu-item">
-             <img :src="danmus.avatar" alt="" class="img">
-             <span>{{danmus.name}}</span>
-             <span>{{danmus.text}}</span>
-           </div>
-         </template>
-       </vue-danmaku>
+        <template>
+          <div class="danmu-item">
+            <img :src="danmus.avatar" alt="" class="img">
+            <span>{{ danmus.name }}</span>
+            <span>{{ danmus.text }}</span>
+          </div>
+        </template>
+      </vue-danmaku>
       <div class="main">
         <p>
           播放：
@@ -180,12 +171,7 @@ function addDanmu(){
           <span class="ml-5">当前轨道：{{ config.channels }}</span>
         </p>
         <p class="flex">
-          <el-input
-              v-model="danmuMsg"
-              type="text"
-              placeholder="输入评论后，回车发送弹幕"
-              @keyup.enter="addDanmu"
-          />
+          <el-input v-model="danmuMsg" type="text" placeholder="输入评论后，回车发送弹幕" @keyup.enter="addDanmu" />
         </p>
       </div>
     </div>

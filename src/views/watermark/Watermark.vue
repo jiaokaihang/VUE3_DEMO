@@ -9,7 +9,6 @@ for(let i =0;i<arr.length;i++){
          setTimeout(function(){
 
         const randomIndex = Math.floor(Math.random() * arr.length);
-        console.log(arr[randomIndex])
         setUser(arr[randomIndex])
          }, i * 2000)
         }
@@ -22,16 +21,18 @@ const font = reactive({
 
 <template>
  <div>
-    <!-- <div>
-        <el-watermark :font="font" content="段红运很帅">
-            <div style="height: 900px;margin: 30px;"></div>
-        </el-watermark>
-    </div> -->
     <div>
+        <el-watermark :font="font" content="段红运很帅">
+            <div style="height: 900px;margin: 30px;">
+                <div>
         <div>hook中的user数据:{{ user }}</div>
         <div>hook中的user数据:{{ setNum }}</div> 
        
     </div>
+            </div>
+        </el-watermark>
+    </div>
+
  </div>
 </template>
 

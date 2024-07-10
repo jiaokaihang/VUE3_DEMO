@@ -109,6 +109,8 @@ const paginationData = computed((item)=>{
     console.log('end',end)
     return tablesData.value.slice(start, end)
 })
+
+
 </script>
 
 
@@ -118,7 +120,7 @@ const paginationData = computed((item)=>{
     <div>
         <BasicTable :colum="colunm" :tableData="tableData" :pagesize="pagesize" :currpage="currpage" :selections="selection"
             :totalRows="totalRows" @MultipleChoice="MultipleChoice" @RadioChoice="RadioChoice" :controls="controls"
-            @updateTalk="handelChuliEdit" @handelViewDetails="handelViewDetails" @selectTalkDelete="selectTalkDelete">
+            @updateTalk="handelChuliEdit" @handelViewDetails="handelViewDetails" @selectTalkDelete="selectTalkDelete" @query="query">
         </BasicTable>
 
     </div>

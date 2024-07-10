@@ -47,25 +47,25 @@ function loginOut(){
 
 }
 const text = ref('1111111')
-onMounted(() =>{
-  getText()
-})
-function getText(){
+// onMounted(() =>{
+//   getText()
+// })
+// function getText(){
 
-  const data = {
-    ColaKey:"m6kOxlzmAfwnGE1715759327453ZWg8FHU0Eh"
-  }
-  // 发送请求
-  http({
-    // url: 'https://luckycola.com.cn/tools/yiyan',
-    url:'https://luckycola.com.cn/tools/yiyan',
-    method: 'post',
-   data
-  }).then(res =>{
-    console.log('res',res)
-    text.value = res.translation
-  })
-}
+//   const data = {
+//     ColaKey:"m6kOxlzmAfwnGE1715759327453ZWg8FHU0Eh"
+//   }
+//   // 发送请求
+//   http({
+//     // url: 'https://luckycola.com.cn/tools/yiyan',
+//     url:'https://luckycola.com.cn/tools/yiyan',
+//     method: 'post',
+//    data
+//   }).then(res =>{
+//     console.log('res',res)
+//     text.value = res.translation
+//   })
+// }
 </script>
 
 <template>

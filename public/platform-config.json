@@ -1,5 +1,5 @@
 {
-  "Version": "2.0",
+  "Version": "2.0.0",
   "Title": "PureAdmin",
   "FixedHeader": true,
   "HiddenSideBar": false,
@@ -23,7 +23,7 @@
   "TooltipEffect": "light",
   "ResponsiveStorageNameSpace": "responsive-",
   "MapConfigure": {
-    "amapKey": "5641e5d33d9db1bd3f622a595406b3b5",
+    "amapKey": "7f9b7ef24d625033e3e7b6a1fe9c918e",
     "viewMode":"3D",
     "options": {
       

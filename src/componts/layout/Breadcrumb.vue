@@ -6,7 +6,7 @@ const route = useRoute()
 console.log('router',router)
 const routers = ref([])
 let getMatched = (route) =>{
-  console.log('打印路径数组',route.matched)
+  console.log('打印路径数组',route)
 
   // routers.value = route.matched.filter(item=>item.meta&&item.meta.title)
    const matched = route.matched
@@ -20,8 +20,9 @@ onMounted(()=>{
 
 watch(() => route.path,(newValue,oldValue)=>{
 //   监听路由路径是否发生变化，之后更改面包屑
+routers.value = route.matched.filter(item=>item.meta && item.meta.title)
 })
-  routers.value = route.matched.filter(item=>item.meta && item.meta.title)
+ 
 
 function  handleLink(item) {
   const { redirect, path } = item
@@ -46,8 +47,8 @@ const onLinkClick = item => {
   <el-breadcrumb class="app-breadcrumb" separator=">">
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item,index) in routers" :key="item.path">
-        <a v-if="index === routers.length-1">{{item.meta.title}}</a>
-        <a :href="item.path" v-else @click.prevent="onLinkClick(item)">  {{item.meta.title}}</a>
+        <span v-if="index === routers.length-1">{{item.meta.title}}</span>
+        <span v-else>  {{item.meta.title}}</span>
 
       </el-breadcrumb-item>
     </transition-group>

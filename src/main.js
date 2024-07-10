@@ -16,9 +16,18 @@ import pinia  from "../src/store/index";
 import App from "./App.vue";
 import { getPlatformConfig } from "./config";
 import '../mock/map/index'
+
+
+
+//引入地图
+// 引入
+import AMapLoader from '@amap/amap-jsapi-loader';
+
 // import VueParticles from 'vue-particles'
 
 const app = createApp(App);
+
+
 // 全局挂载echarts
 app.config.globalProperties.$echarts = echarts
 

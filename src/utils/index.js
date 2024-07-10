@@ -120,7 +120,15 @@ export default function children() {
         {
           title:'便携小空调示例',
           path:"/basicdata/kongtiao"
-        }
+        },
+        {
+             title:'高德地图-非线图',
+             path:'/basicdata/gaode'
+        },
+        {
+          title:'高德地图-热力图',
+          path:'/basicdata/gaodeReli'
+     }
       ],
     },
     {

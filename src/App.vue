@@ -1,7 +1,7 @@
 <template>
   <!-- <dv-full-screen-container> -->
   <div ref="appRef" class="app">
-    <el-container class="layout-container-demo" style="height: 97vh" v-if="($route.path !=='/login' && $route.path !== '/404')  ">
+    <el-container class="layout-container-demo" style="height: 100vh" v-if="($route.path !=='/login' && $route.path !== '/404')  ">
       <el-aside width="collapse" style="
       background: #242424;" >
         <el-scrollbar>
@@ -123,7 +123,7 @@ body{
   margin: 0px;
   padding: 0px;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 * {
   margin: 0px;
@@ -157,6 +157,6 @@ body{
   align-items: center;
   justify-content: center;
   height: 100%;
-  //right: 20px;
+  right: 20px;
 }
 </style>

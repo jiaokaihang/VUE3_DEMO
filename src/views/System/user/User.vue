@@ -38,7 +38,12 @@ const BasicTable = defineAsyncComponent(()=>{
 })
 
 function query(value){
-   console.log('value',value)
+  console.log('查询数据',value)
+  
+  tableData.value = tableDatas.value.filter(item => item.loginName.includes(value));
+  console.log('查询数据',tableData.value)
+  // console.log('查询数据',tableDatas.value.filter(item => console.log(item)))
+  return tableData;
 }
 
 

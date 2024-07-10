@@ -18,7 +18,7 @@
     "danmu.js": "^1.1.13",
     "dayjs": "^1.11.10",
     "echarts": "^5.4.3",
-    "element-plus": "^2.4.4",
+    "element-plus": "^2.7.6",
     "free-time-ui": "^1.0.6",
     "less-loader": "^12.0.0",
     "lodash": "^4.17.21",

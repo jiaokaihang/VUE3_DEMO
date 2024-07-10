@@ -24,6 +24,7 @@ function onSubmit() {
         obj[item.value] = item.value;
         return obj;
     }, {});
+    console.log('formData', formData)
     emit("query", formData);
 }
 //重置

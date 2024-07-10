@@ -89,7 +89,7 @@ const constRoutes = [
         path: "/basicdata/maps",
         name:"investmentattraction",
         component: RouterView,
-        meta: { title:'3D地图',needLogin:true},
+        meta: { title:'地图信息',needLogin:true},
         children:[
           {
             path: "/basicdata/maps/map",
@@ -198,6 +198,16 @@ const constRoutes = [
         path: "/basicdata/kongtiao",
         component: ()=>import('@/views/kongtiao/index.vue'),
         meta: { title:'便携小空调组件',needLogin:true},
+      },
+      {
+        path: "/basicdata/gaode",
+        component: ()=>import('@/views/gaode/index.vue'),
+        meta: { title:'高德地图飞线图组件',needLogin:true},
+      },
+      {
+        path: "/basicdata/gaodeReli",
+        component: ()=>import('@/views/gaodereli/index.vue'),
+        meta: { title:'高德地图热力图组件',needLogin:true},
       },
     ]
   },

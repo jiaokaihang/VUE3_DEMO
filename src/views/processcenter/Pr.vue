@@ -58,7 +58,7 @@ onBeforeMount(() => {
 
     // 创建地图实例
     // instance.refs.mapview, options, ----添加上就是2D模式,删除就是3D模式
-    map = new AMap.Map('mapview', {
+    map = new AMap.Map('mapview',      {
       mapStyle: 'amap://styles/whitesmoke',
       layers: [layer, buildings],//地图图层的数组
       viewMode: '3D',

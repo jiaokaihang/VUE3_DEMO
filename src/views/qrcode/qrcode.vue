@@ -1,7 +1,7 @@
 <script setup>
-import {ref} from 'vue'
+import {ref } from 'vue'
 import QRCode from 'qrcode'
-
+import AMapLoader from '@amap/amap-jsapi-loader'
 
 const url = 'https://blog.csdn.net/qq_65949679?type=blog'
 
@@ -33,6 +33,11 @@ const handleGetQRCode2 = async() => {
 
   })
 }
+
+
+
+
+
 </script>
 
 <template>
@@ -51,9 +56,10 @@ const handleGetQRCode2 = async() => {
     <img :src="qrcode2" />
   </div>
 
+
 </div>
 </template>
 
-<style>
+<style scoped lang="less">
 
 </style>

@@ -1,5 +1,5 @@
 <script  setup>
-import {  ref,  onMounted, onBeforeUpdate, nextTick } from 'vue'
+import {  ref,  onMounted, onBeforeUpdate, nextTick,computed} from 'vue'
 const emit = defineEmits([  //emit是父组件向子组件传递的自定义事件
     "query",
     "queryPage",
@@ -41,6 +41,13 @@ const newCurrpage = ref(1)
 
 const multipleTable = ref(null)
 
+//计算属性-计算每页的数据
+const paginationData = computed((item)=>{
+    const start = (newCurrpage.value -1) * newPageSize.value;
+    const end = newCurrpage.value * newPageSize.value
+    return props.tableData.slice(start,end)
+})
+
 
 
 onMounted(() => {
@@ -75,19 +82,19 @@ function cellClick(v, colunm) {
 function handleSizeChange(val) {
     console.log(`每页${val}条`);
     newPageSize.value = val;
-    emit("query", newPageSize.value, newCurrpage.value);
-    emit("queryPage", newPageSize.value, newCurrpage.value);
-    emit("queryTable");
-    emit("queryTableTwo");
+    // emit("query", newPageSize.value, newCurrpage.value);
+    // emit("queryPage", newPageSize.value, newCurrpage.value);
+    // emit("queryTable");
+    // emit("queryTableTwo");
 }
 //当前页
 function handleCurrentChange(val) {
     console.log(`当前页：${val}`);
     newCurrpage.value = val;
-    emit("query", newPageSize.value, newCurrpage.value);
-    emit("queryPage", newPageSize.value, newCurrpage.value);
-    emit("queryTable");
-    emit("queryTableTwo");
+    // emit("query", newPageSize.value, newCurrpage.value);
+    // emit("queryPage", newPageSize.value, newCurrpage.value);
+    // emit("queryTable");
+    // emit("queryTableTwo");
 }
 //删除某条数据
 function handleDelete(index, row) {
@@ -119,8 +126,8 @@ function handleEditor(index, row) {
 </script>
 <template>
     <div>
-        <div v-show="tableData.length > 0">
-            <el-table :data="tableData" ref="multipleTable" border style="width: 100%"
+        <div v-show="paginationData.length > 0">
+            <el-table :data="paginationData" ref="multipleTable" border style="width: 100%"
                 @selection-change="handleSelectionChange" highlight-current-row @row-click="handleRadioCurrentChange"
                 @cell-click="cellClick" v-loading="loading" :header-cell-style="{ color: '#8F8F8F' }"
                 :cell-style="{ color: '#171717' }">
@@ -136,9 +143,6 @@ function handleEditor(index, row) {
 
                 <el-table-column v-for="(item, index) in colum" :key="index" :prop="item.prop" :label="item.label"
                     :width="width">
-<!--                  <template v-if="item.prop == 'open'">-->
-<!--                    <el-switch v-model="value1" />-->
-<!--                  </template>-->
                 </el-table-column>
 
                 <el-table-column label="操作" v-if="controls === 'edit'" fixed="right" width="100px">
@@ -209,9 +213,7 @@ function handleEditor(index, row) {
                 </el-pagination>
             </div>
         </div>
-        <!-- <div v-show="tableData.length == 0">
-            <EmptyNull :height="height"></EmptyNull>
-        </div> -->
+
     </div>
 </template>
 
