@@ -18,8 +18,8 @@ function initAMap() {
     }).then((AMap) => {
         map = new AMap.Map('container');
         var map = new AMap.Map('container', {
-            center: [120.30, 35.35923],
-            zoom: 8,
+            center: [116.397428, 39.90923],
+            zoom: 10,
             viewMode: '3D',  // 地图设置成 3D 模式，否则图层会失去高度信息
             mapStyle: 'amap://styles/dark', // 使用高德地图的浅色模式
         });
@@ -30,53 +30,34 @@ function initAMap() {
         console.log('Loca', loca)
 
 
-    //   热力图层
+    // 高德地图线图层
     var geo = new Loca.GeoJSONSource({
-            url: 'https://a.amap.com/Loca/static/loca-v2/demos/mock_data/tsing.json',
-        });
-      
-
-        // 热力图
-        var heatmap = new Loca.HeatMapLayer({
-            // loca,
-            zIndex: 10,
-            opacity: 1,
-            visible: true,
-            zooms: [2, 22],//设置图层可见的缩放范围
-        });
-        //    热力图层样式
-        heatmap.setSource(geo, {
-            radius: 9000,
-            unit: 'meter',
-            height: 9000,
-            difference: true,
-            gradient: {
-                1: '#FF4C2F',
-                0.8: '#FAA53F',
-                0.6: '#FFF100',
-                0.5: '#7DF675',
-                0.4: '#5CE182',
-                0.2: '#29CF6F',
-            },
-            value: function (index, feature) {
-                return feature.properties.count;
-            },
-            opacity: [0, 1],
-            heightBezier: [1, 3,1,4]
-            // heightBezier: [0, 0.53, 0.37, 0.98]
+            url: 'https://a.amap.com/Loca/static/loca-v2/demos/mock_data/bj_bus.json',
         });
 
-        loca.add(heatmap)
-        map.on('click', () => {
-            heatmap.addAnimate({
-                key: 'radius',
-                value: [0, 1],
-                random: true,
-                transform: 1000,
-                delay: 6000,
-                easing: 'BounceOut' //https://redmed.github.io/chito/example/easing.html
-            });
+        var ll = new Loca.LineLayer({
+            loca,
         });
+        var colors = ['#f7fcf5', '#e5f5e0', '#c7e9c0', '#a1d99b', '#74c476', '#41ab5d', '#238b45', '#006d2c', '#00441b'].reverse();
+        ll.setSource(geo, {
+            color: function (index, prop) {
+                var i = index % colors.length;
+                return colors[i];
+            },
+            lineWidth: (index, prop) => {
+                var i = index % colors.length;
+                return i * 0.1 + 2;
+            },
+            altitude: function (index, feature) {
+                var i = index % colors.length;
+                return 100 * i;
+            },
+            dash: [10, 4, 10, 2],
+        });
+
+
+        var dat = new Loca.Dat();
+        dat.addLayer(ll);
 
 
     })

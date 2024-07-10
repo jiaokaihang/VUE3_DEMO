@@ -209,6 +209,21 @@ const constRoutes = [
         component: ()=>import('@/views/gaodereli/index.vue'),
         meta: { title:'高德地图热力图组件',needLogin:true},
       },
+      {
+        path: "/basicdata/gaodexian",
+        component: ()=>import('@/views/gaodexian/index.vue'),
+        meta: { title:'高德地图线图组件',needLogin:true},
+      },
+      {
+        path: "/basicdata/gaodemaichongxian",
+        component: ()=>import('@/views/gaodemaichongxian/index.vue'),
+        meta: { title:'高德地图脉冲线组件',needLogin:true},
+      },
+      {
+        path: "/basicdata/gaodewanggeReli",
+        component: ()=>import('@/views/gaodewanggeReli/index.vue'),
+        meta: { title:'高德地图网格热力图组件',needLogin:true},
+      },
     ]
   },
 

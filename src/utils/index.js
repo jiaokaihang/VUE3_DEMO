@@ -14,20 +14,20 @@ export default function children() {
           title: "表格封装",
           path: "/basicdata/processcenter",
           icon: "Tickets",
-          children:[
-              {
-                title:"表格封装组件",
-                path: "/basicdata/processcenter/table",
-                icon: "Memo",
-                name:"table"
-              },
+          children: [
             {
-              title:"表格排序组件",
+              title: "表格封装组件",
+              path: "/basicdata/processcenter/table",
+              icon: "Memo",
+              name: "table",
+            },
+            {
+              title: "表格排序组件",
               path: "/basicdata/processcenter/sortable",
               icon: "Collection",
-              name:"sortable"
-            }
-          ]
+              name: "sortable",
+            },
+          ],
         },
         {
           title: "地图信息",
@@ -35,19 +35,18 @@ export default function children() {
           icon: "Location",
           children: [
             {
-              title:"2D地图",
+              title: "2D地图",
               path: "/basicdata/maps/map",
               icon: "LocationInformation",
-              name:"pr"
-              
+              name: "pr",
             },
             {
-              title:"3D地图",
+              title: "3D地图",
               path: "/basicdata/maps/3Dmap",
               icon: "MapLocation",
-              name:"pr"
+              name: "pr",
             },
-          ]
+          ],
         },
         {
           title: "表单封装",
@@ -60,14 +59,14 @@ export default function children() {
             {
               title: "上传组件",
               path: "/basicdata/upload/uploadImage",
-              name:"uploadImage"
+              name: "uploadImage",
             },
             {
               title: "文件分片上传",
               path: "/basicdata/upload/uploadFile",
-              name:"uploadImage"
-            }
-          ]
+              name: "uploadImage",
+            },
+          ],
         },
         {
           title: "水印组件",
@@ -106,29 +105,41 @@ export default function children() {
           path: "/basicdata/inputCopy",
         },
         {
-          title:'二维码示例',
-          path:"/basicdata/qrcode"
+          title: "二维码示例",
+          path: "/basicdata/qrcode",
         },
         {
-          title:'步骤条示例',
-          path:"/basicdata/setups"
+          title: "步骤条示例",
+          path: "/basicdata/setups",
         },
         {
-          title:'翻译示例',
-          path:"/basicdata/fanyi"
+          title: "翻译示例",
+          path: "/basicdata/fanyi",
         },
         {
-          title:'便携小空调示例',
-          path:"/basicdata/kongtiao"
+          title: "便携小空调示例",
+          path: "/basicdata/kongtiao",
         },
         {
-             title:'高德地图-非线图',
-             path:'/basicdata/gaode'
+          title: "高德地图-非线图",
+          path: "/basicdata/gaode",
         },
         {
-          title:'高德地图-热力图',
-          path:'/basicdata/gaodeReli'
-     }
+          title: "高德地图-热力图",
+          path: "/basicdata/gaodeReli",
+        },
+        {
+          title: "高德地图-线图层",
+          path: "/basicdata/gaodexian",
+        },
+        {
+          title: "高德地图-脉冲线层",
+          path: "/basicdata/gaodemaichongxian",
+        },
+        {
+           title: "高德地图-网格热力层",
+           path: "/basicdata/gaodewanggeReli"
+        }
       ],
     },
     {
@@ -136,7 +147,6 @@ export default function children() {
       path: "/netWork",
       icon: "Share",
       children: [
-
         {
           title: "用户管理",
           path: "/network/user",
